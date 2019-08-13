@@ -2,7 +2,6 @@
   "name": "typescript-service-template",
   "version": "0.1.0",
   "description": "An opinionated template for spinning up typescript services.",
-  "main": "index.js",
   "scripts": {
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",

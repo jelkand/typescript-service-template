@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    networks:
+      - service_net
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+      - /usr/src/app/dist
+
+networks:
+  service_net:
