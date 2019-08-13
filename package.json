@@ -1,0 +1,19 @@
+{
+  "name": "typescript-service-template",
+  "version": "0.1.0",
+  "description": "An opinionated template for spinning up typescript services.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jelkand/typescript-service-template.git"
+  },
+  "author": "Jack Anderson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jelkand/typescript-service-template/issues"
+  },
+  "homepage": "https://github.com/jelkand/typescript-service-template#readme"
+}
