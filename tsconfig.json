@@ -3,6 +3,7 @@
     "target": "esnext",
     "skipLibCheck": true,
     "esModuleInterop": true,
+    "declaration": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
@@ -10,7 +11,7 @@
     "moduleResolution": "node",
     "noImplicitAny": true,
     "outDir": "dist",
-    "resolveJsonModule": true,
+    "resolveJsonModule": true
   },
   "include": ["src", "test"]
 }
