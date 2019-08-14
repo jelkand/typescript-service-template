@@ -1,17 +1,13 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require('fs')
+const path = require('path')
 
 const prettierOptions = JSON.parse(
   fs.readFileSync(path.resolve(__dirname, '.prettierrc'), 'utf8'),
-);
+)
 
 module.exports = {
   parser: '@typescript-eslint/parser',
-  extends: [
-    'plugin:@typescript-eslint/recommended',
-    'airbnb-base',
-    'prettier',
-  ],
+  extends: ['plugin:@typescript-eslint/recommended', 'airbnb-base', 'prettier'],
   plugins: ['prettier'],
   env: {
     node: true,
@@ -51,5 +47,11 @@ module.exports = {
     'react/destructuring-assignment': 0,
     'require-yield': 0,
     '@typescript-eslint/indent': ['error', 2],
+    '@typescript-eslint/no-implicit-any': 2,
   },
-};
+  settings: {
+    'import/resolver': {
+      'babel-module': {},
+    },
+  },
+}

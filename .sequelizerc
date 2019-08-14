@@ -1,0 +1,12 @@
+'use strict';
+
+const path = require('path');
+
+const isProduction = process.env.NODE_ENV === 'production'
+const srcPath = isProduction ? 'dist' : 'src';
+
+module.exports = {
+  config: path.join(__dirname, `$srcPath/db/config.json`),
+  'migrations-path': path.join(__dirname, `$srcPath/db/migrations`),
+  'seeders-path': path.join(__dirname, `$srcPath/db/seeders`),
+}

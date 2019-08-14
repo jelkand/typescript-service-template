@@ -14,6 +14,12 @@ services:
       - ./:/usr/src/app
       - /usr/src/app/node_modules
       - /usr/src/app/dist
+    depends_on:
+      - dev_db
+    environment:
+      POSTGRES_PASSWORD: dummypass
+      POSTRES_DB: dev-db
+      POSTGRES_USER: jelkand
 
   ci:
     build:
@@ -27,6 +33,17 @@ services:
       - ./:/usr/src/app
       - /usr/src/app/node_modules
       - /usr/src/app/dist
+    environment:
+      POSTGRES_PASSWORD: fnord
+      POSTRES_DB: fnord
+      POSTGRES_USER: fnord
+
+  dev_db:
+    image: postgres:11.5-alpine
+    environment:
+      POSTGRES_PASSWORD: dummypass
+      POSTRES_DB: dev-db
+      POSTGRES_USER: jelkand
 
 networks:
   service_net:
