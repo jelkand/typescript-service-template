@@ -5,6 +5,20 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      target: dev
+    ports:
+      - '3000:3000'
+    networks:
+      - service_net
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+      - /usr/src/app/dist
+
+  ci:
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - '3000:3000'
     networks:

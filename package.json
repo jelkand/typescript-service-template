@@ -11,6 +11,7 @@
     "build:js:watch": "babel src -w --out-dir dist --extensions \".ts\" --source-maps inline",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
+    "start:ci": "node dist/server/server.js",
     "start:dev": "concurrently \"npm run build:js:watch\" \"nodemon dist/server/server.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
