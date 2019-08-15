@@ -47,7 +47,7 @@ module.exports = {
     'react/destructuring-assignment': 0,
     'require-yield': 0,
     '@typescript-eslint/indent': ['error', 2],
-    '@typescript-eslint/no-implicit-any': 2,
+    '@typescript-eslint/no-explicit-any': 2,
   },
   settings: {
     'import/resolver': {

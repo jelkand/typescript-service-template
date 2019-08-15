@@ -14,5 +14,6 @@
     "resolveJsonModule": true,
     "baseUrl": "src"
   },
-  "include": ["src", "test"]
+  "include": ["src"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
 }
