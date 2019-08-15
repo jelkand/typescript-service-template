@@ -9,7 +9,8 @@
         "root": ["./src"],
         "alias": {
           "test": "./test"
-        }
+        },
+        "extensions": [".ts", ".tsx", ".js", ".jsx", ".es", ".es6", ".mjs"]
       }
     ]
   ]

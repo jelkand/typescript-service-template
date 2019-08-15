@@ -55,7 +55,9 @@
     "@types/node": "^12.7.1",
     "@types/sequelize": "^4.28.4",
     "@types/validator": "^10.11.2",
+    "apollo-server-express": "^2.8.1",
     "express": "^4.17.1",
+    "graphql": "^14.4.2",
     "sequelize": "^5.14.0",
     "sequelize-cli": "^5.5.0"
   }

@@ -1,7 +1,15 @@
-import express from 'express';
-const app = express();
-const port = 3000;
+import express from 'express'
+import { ApolloServer } from 'apollo-server-express'
+import typeDefs from 'graphql/typeDefs'
+import resolvers from 'graphql/resolvers'
 
-app.get('/', (req, res) => res.send('Hello World!'));
+const server = new ApolloServer({ typeDefs, resolvers })
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+const app = express()
+const port = process.env.port || 3000
+
+server.applyMiddleware({ app })
+
+app.listen(port, () =>
+  console.log(`Typescript template app listening on port ${port}!`),
+)

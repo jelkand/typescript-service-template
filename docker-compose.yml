@@ -12,11 +12,12 @@ services:
       - service_net
     volumes:
       - ./:/usr/src/app
-      - /usr/src/app/node_modules
+      - ./node_modules:/usr/src/app/node_modules
       - /usr/src/app/dist
     depends_on:
       - dev_db
     environment:
+      NODE_ENV: development
       POSTGRES_PASSWORD: dummypass
       POSTRES_DB: dev-db
       POSTGRES_USER: jelkand
@@ -31,9 +32,10 @@ services:
       - service_net
     volumes:
       - ./:/usr/src/app
-      - /usr/src/app/node_modules
+      - ./node_modules:/usr/src/app/node_modules
       - /usr/src/app/dist
     environment:
+      NODE_ENV: production
       POSTGRES_PASSWORD: fnord
       POSTRES_DB: fnord
       POSTGRES_USER: fnord
