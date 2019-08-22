@@ -1,12 +1,12 @@
 'use strict';
-
+require("@babel/register");
 const path = require('path');
 
-const isProduction = process.env.NODE_ENV === 'production'
-const srcPath = isProduction ? 'dist' : 'src';
+const isRemote = !!process.env.HOSTNAME // this is a total hack never do this
+const srcPath = isRemote ? 'dist' : 'src';
 
 module.exports = {
-  config: path.join(__dirname, `$srcPath/db/config.json`),
-  'migrations-path': path.join(__dirname, `$srcPath/db/migrations`),
-  'seeders-path': path.join(__dirname, `$srcPath/db/seeders`),
+  config: path.join(__dirname, `${srcPath}/db/config.json`),
+  'migrations-path': path.join(__dirname, `${srcPath}/db/migrations`),
+  'seeders-path': path.join(__dirname, `${srcPath}/db/seeders`),
 }

@@ -1,25 +1,25 @@
-export default {
+module.exports = {
   development: {
     username: process.env.POSTGRES_USER,
-    password: process.env.POSTGRES_PASS,
+    password: process.env.POSTGRES_PASSWORD,
     database: process.env.POSTGRES_DB,
-    host: '127.0.0.1',
+    host: process.env.POSTGRES_HOST,
     dialect: 'postgres',
     operatorsAliases: false,
   },
   test: {
     username: process.env.POSTGRES_USER,
-    password: process.env.POSTGRES_PASS,
+    password: process.env.POSTGRES_PASSWORD,
     database: process.env.POSTGRES_DB,
-    host: '127.0.0.1',
+    host: process.env.POSTGRES_HOST,
     dialect: 'postgres',
     operatorsAliases: false,
   },
   production: {
     username: process.env.POSTGRES_USER,
-    password: process.env.POSTGRES_PASS,
+    password: process.env.POSTGRES_PASSWORD,
     database: process.env.POSTGRES_DB,
-    host: 'who knows lol',
+    host: process.env.POSTGRES_HOST,
     dialect: 'postgres',
     operatorsAliases: false,
   },

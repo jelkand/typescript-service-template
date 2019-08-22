@@ -4,7 +4,8 @@ declare global {
     interface ProcessEnv {
       POSTGRES_DB: string
       POSTGRES_USER: string
-      POSTGRES_PASS: string
+      POSTGRES_PASSWORD: string
+      POSTGRES_HOST: string
       NODE_ENV: 'development' | 'production'
     }
   }

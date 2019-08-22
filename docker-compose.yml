@@ -15,12 +15,14 @@ services:
       - ./node_modules:/usr/src/app/node_modules
       - /usr/src/app/dist
     depends_on:
-      - dev_db
+      - db
     environment:
       NODE_ENV: development
       POSTGRES_PASSWORD: dummypass
       POSTRES_DB: dev-db
       POSTGRES_USER: jelkand
+      POSTGRES_HOST: host.docker.internal
+
 
   ci:
     build:
@@ -40,12 +42,16 @@ services:
       POSTRES_DB: fnord
       POSTGRES_USER: fnord
 
-  dev_db:
+  db:
     image: postgres:11.5-alpine
+    ports:
+      - '5432:5432'
     environment:
       POSTGRES_PASSWORD: dummypass
       POSTRES_DB: dev-db
       POSTGRES_USER: jelkand
+    volumes:
+      - /var/lib/postgresql/data
 
 networks:
   service_net:
