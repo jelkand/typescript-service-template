@@ -1,5 +1,4 @@
 'use strict';
-require("@babel/register");
 const path = require('path');
 
 const isRemote = !!process.env.HOSTNAME // this is a total hack never do this

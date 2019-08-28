@@ -49,9 +49,4 @@ module.exports = {
     '@typescript-eslint/indent': ['error', 2],
     '@typescript-eslint/no-explicit-any': 2,
   },
-  settings: {
-    'import/resolver': {
-      'babel-module': {},
-    },
-  },
 }
