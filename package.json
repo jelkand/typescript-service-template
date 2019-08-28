@@ -7,6 +7,7 @@
     "type-check:watch": "npm run type-check -- --watch",
     "build": "tsc",
     "build:watch": "tsc -w",
+    "generate": "graphql-codegen",
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint --fix .",
     "migrate": "sequelize db:migrate",
@@ -25,6 +26,9 @@
   },
   "homepage": "https://github.com/jelkand/typescript-service-template#readme",
   "devDependencies": {
+    "@graphql-codegen/cli": "^1.6.1",
+    "@graphql-codegen/typescript": "^1.6.1",
+    "@graphql-codegen/typescript-resolvers": "^1.6.1",
     "@types/jest": "^24.0.17",
     "@typescript-eslint/eslint-plugin": "^1.13.0",
     "@typescript-eslint/parser": "^1.13.0",
