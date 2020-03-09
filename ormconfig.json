@@ -1,17 +1,17 @@
 {
-  "name": "default",
   "type": "postgres",
-  "host": "localhost",
+  "host": "host.docker.internal",
   "port": 5432,
-  "username": "jackanderson",
-  "password": "",
-  "database": "jackanderson",
+  "username": "development",
+  "database": "typescript_service_template",
   "synchronize": false,
   "logging": false,
-  "entities": ["src/db/entity/**/*.ts"],
-  "migrations": ["src/db/migration/**/*.js"],
-  "subscribers": ["src/db/subscriber/**/*.ts"],
+  "entities": ["dist/db/entity/**/*.js"],
+  "migrations": ["dist/db/migration/**/*.js"],
+  "subscribers": ["dist/db/subscriber/**/*.js"],
   "cli": {
-    "migrationsDir": "migration"
+    "entitiesDir": "src/db/entity",
+    "migrationsDir": "src/db/migration",
+    "subscribersDir": "src/db/subscriber"
   }
 }

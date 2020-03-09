@@ -8,14 +8,14 @@ export class CreateSampleModel1583725809916 implements MigrationInterface {
         columns: [
           {
             name: 'id',
-            type: 'string',
+            type: 'uuid',
             isPrimary: true,
             isGenerated: true,
             generationStrategy: 'uuid',
           },
           {
             name: 'attribute',
-            type: 'string',
+            type: 'text',
           },
         ],
       }),
