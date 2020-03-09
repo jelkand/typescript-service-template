@@ -3,6 +3,9 @@ FROM node:12.8.0-alpine as dev
 COPY . /usr/src/app
 WORKDIR /usr/src/app
 RUN chmod +x wait-for-it.sh
+
+# ENV 
+
 RUN npm i
 RUN npm run build
 

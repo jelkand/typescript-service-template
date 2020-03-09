@@ -10,7 +10,7 @@
     "generate": "graphql-codegen",
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint --fix .",
-    "migrate": "sequelize db:migrate",
+    "migrate": "typeorm migration:run",
     "start:ci": "node dist/server/server.js",
     "start:dev": "concurrently \"npm run build:watch\" \"nodemon dist/server/server.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -38,7 +38,7 @@
     "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-prettier": "^3.1.0",
-    "jest": "^24.8.0",
+    "jest": "^25.1.0",
     "nodemon": "^1.19.1",
     "prettier": "^1.18.2",
     "ts-jest": "^24.0.2",
@@ -54,9 +54,8 @@
     "express": "^4.17.1",
     "graphql": "^14.4.2",
     "pg": "^7.12.1",
-    "sequelize": "^5.15.1",
-    "sequelize-cli": "^5.5.0",
-    "sequelize-typescript": "^1.0.0",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.24",
     "uuid": "^3.3.3"
   }
 }

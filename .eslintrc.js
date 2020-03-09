@@ -48,5 +48,14 @@ module.exports = {
     'require-yield': 0,
     '@typescript-eslint/indent': ['error', 2],
     '@typescript-eslint/no-explicit-any': 2,
+    '@typescript-eslint/member-delimiter-style': 0,
+    '@typescript-eslint/explicit-member-accessibility': 0,
+  },
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.ts'],
+      },
+    },
   },
 }
