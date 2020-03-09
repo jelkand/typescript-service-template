@@ -1,0 +1,17 @@
+{
+  "name": "default",
+  "type": "postgres",
+  "host": "localhost",
+  "port": 5432,
+  "username": "jackanderson",
+  "password": "",
+  "database": "jackanderson",
+  "synchronize": false,
+  "logging": false,
+  "entities": ["src/db/entity/**/*.ts"],
+  "migrations": ["src/db/migration/**/*.js"],
+  "subscribers": ["src/db/subscriber/**/*.ts"],
+  "cli": {
+    "migrationsDir": "migration"
+  }
+}
