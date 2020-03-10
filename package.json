@@ -13,7 +13,7 @@
     "migrate": "typeorm migration:run",
     "start:ci": "node dist/server/server.js",
     "start:dev": "concurrently \"npm run build:watch\" \"nodemon dist/server/server.js\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/jelkand/typescript-service-template#readme",
   "devDependencies": {
+    "@graphql-codegen/add": "^1.13.0",
     "@graphql-codegen/cli": "^1.6.1",
     "@graphql-codegen/typescript": "^1.6.1",
     "@graphql-codegen/typescript-resolvers": "^1.6.1",

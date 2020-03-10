@@ -1,13 +1,16 @@
 FROM node:12.8.0-alpine as dev
 
-COPY . /usr/src/app
+COPY package.json /usr/src/app/package.json
 WORKDIR /usr/src/app
-RUN chmod +x wait-for-it.sh
-
-# ENV 
 
 RUN npm i
+
+COPY . .
+
+# RUN chmod +x wait-for-it.sh
 RUN npm run build
+
+EXPOSE 3000
 
 ENTRYPOINT [ "docker-entrypoint.sh" ]
 CMD npm run start:dev

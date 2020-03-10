@@ -4,6 +4,8 @@ import express from 'express'
 import { ApolloServer } from 'apollo-server-express'
 import typeDefs from '../graphql/typeDefs'
 import resolvers from '../graphql/resolvers'
+
+import { SampleModel } from '../db/entity/SampleModel'
 ;(async (): Promise<void> => {
   const dbConnection = await createConnection()
   const server = new ApolloServer({
@@ -11,6 +13,7 @@ import resolvers from '../graphql/resolvers'
     resolvers,
     context: {
       dbConnection,
+      SampleModel,
     },
   })
 
