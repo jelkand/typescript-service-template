@@ -8,8 +8,6 @@ services:
       target: dev
     ports:
       - '3000:3000'
-    networks:
-      - service_net
     volumes:
       - ./:/usr/src/app
       - ./node_modules:/usr/src/app/node_modules
@@ -22,7 +20,6 @@ services:
       POSTRES_DB: dev-db
       POSTGRES_USER: jelkand
       POSTGRES_HOST: host.docker.internal
-
 
   ci:
     build:

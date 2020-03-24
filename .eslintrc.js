@@ -12,6 +12,7 @@ module.exports = {
   env: {
     node: true,
     es6: true,
+    jest: true,
   },
   parserOptions: {
     ecmaVersion: 2018,
@@ -48,5 +49,15 @@ module.exports = {
     'require-yield': 0,
     '@typescript-eslint/indent': ['error', 2],
     '@typescript-eslint/no-explicit-any': 2,
+    '@typescript-eslint/member-delimiter-style': 0,
+    '@typescript-eslint/explicit-member-accessibility': 0,
+    '@typescript-eslint/no-non-null-assertion': 0,
+  },
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.ts'],
+      },
+    },
   },
 }

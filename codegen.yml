@@ -1,12 +1,12 @@
 schema: ./src/graphql/typeDefs.ts
 generates:
-  ./src/typings/graphql.d.ts:
+  ./src/typings/graphql.ts:
     plugins:
+      - add: '/* eslint-disable */'
       - typescript
       - typescript-resolvers
     config:
       useIndexSignature: true
-      # federation: true # when grabbing via introspection, we don't want this...
-      typesPrefix: I
-      # mappers:
-      #   Post: ./src/db/models/#IPostDbObject
+      mappers:
+        Sample: ../db/entity/SampleModel#SampleModel
+      contextType: ../typings/context#Context
