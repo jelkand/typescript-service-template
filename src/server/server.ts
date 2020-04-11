@@ -1,28 +1,33 @@
 import 'reflect-metadata'
 import { createConnection } from 'typeorm'
-import express from 'express'
-import { ApolloServer } from 'apollo-server-express'
+import bunyan from 'bunyan'
+import { ApolloServer } from 'apollo-server'
 import typeDefs from '../graphql/typeDefs'
 import resolvers from '../graphql/resolvers'
 
 import { SampleModel } from '../db/entity/SampleModel'
+import { LoggingPlugin } from './plugins/loggingPlugin'
 ;(async (): Promise<void> => {
-  const dbConnection = await createConnection()
+  const logger = bunyan.createLogger({
+    name: 'typescript-service-template',
+  })
+
+  const dbConnection = await createConnection('default')
   const server = new ApolloServer({
     typeDefs,
     resolvers,
+    logger,
     context: {
       dbConnection,
       SampleModel,
     },
+    plugins: [LoggingPlugin],
   })
 
-  const app = express()
   const port = process.env.port || 3000
 
-  server.applyMiddleware({ app })
-
-  app.listen(port, (): void =>
-    console.log(`Typescript template app listening on port ${port}!`),
-  )
+  await server.listen(port)
+  logger.info({
+    message: `typescript-service-template listening on port ${port}`,
+  })
 })()

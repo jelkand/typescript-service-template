@@ -18,9 +18,7 @@ const Mutation: MutationResolvers = {
     args,
     { SampleModel },
   ): Promise<Maybe<dbSampleModel>> => {
-    console.log({ args })
     const result = await SampleModel.create(args).save()
-    console.log({ result })
     return Promise.resolve(result || null)
   },
   updateSample: async (
