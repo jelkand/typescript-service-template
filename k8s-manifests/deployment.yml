@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: typescript-service-template
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: typescript-service-template
+  template:
+    metadata:
+      labels:
+        app: typescript-service-template
+    spec:
+      containers:
+        - name: app
+          image: jelkand.azurecr.io/typescript-service-template:0678ea23bc3ecce0acbde39389ee4e16dcc48e51
+          ports:
+            - containerPort: 3000
+          env:
+            - name: POSTGRES_DB
+              value: mongodb://mongo:27017/dev
+          imagePullPolicy: Always

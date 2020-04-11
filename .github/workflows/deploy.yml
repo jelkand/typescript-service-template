@@ -5,6 +5,13 @@ on:
     branches:
       - master
 
+env:
+  SERVICE_NAME: typescript-service-template
+  REGISTRY_NAME: jelkand
+  CLUSTER_NAME: jelkand
+  CLUSTER_RESOURCE_GROUP: general
+  NAMESPACE: default
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -23,7 +30,7 @@ jobs:
         run: |
           docker-compose build
 
-      - name: Execute Tests
+      - name: Execute Unit Tests
         run: |
           docker-compose run --rm dev npm i
           docker-compose run --rm dev npm test
@@ -36,34 +43,40 @@ jobs:
       - name: Login to container registry
         uses: azure/docker-login@v1
         with:
-          login-server: jelkand.azurecr.io
+          login-server: ${{ env.REGISTRY_NAME }}.azurecr.io
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
+
       - name: Build and Push
         run: |
-          docker tag typescript-service-template_ci jelkand.azurecr.io/typescript-service-template:${{ github.sha }}
-          docker push jelkand.azurecr.io/typescript-service-template:${{ github.sha }}
-      # # Set the target AKS cluster.
-      # - name: Set target AKS cluster
-      #   uses: azure/k8s-actions/aks-set-context@master
-      #   with:
-      #     creds: '${{ secrets.AZURE_CREDENTIALS }}'
-      #     cluster-name: ilmk8s
-      #     resource-group: ILM
-      # TODO: Move Env Vars to Secrets
-      # - uses: azure/k8s-actions/k8s-create-secret@master
-      #   with:
-      #     container-registry-url: jelkand.azurecr.io
-      #     container-registry-username: ${{ secrets.REGISTRY_USERNAME }}
-      #     container-registry-password: ${{ secrets.REGISTRY_PASSWORD }}
-      #     secret-name: demo-k8s-secret
-      # - name: Ship it!
-      #   uses: azure/k8s-actions/k8s-deploy@master
-      #   with:
-      #     manifests: |
-      #       manifests/deployment.yml
-      #       manifests/service.yml
-      #     images: |
-      #       jelkand.azurecr.io/typescript-service-template:${{ github.sha }}
-      # imagepullsecrets: |
-      #   demo-k8s-secret
+          docker tag ${{ env.SERVICE_NAME }}_ci ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.SERVICE_NAME }}:${{ github.sha }}
+          docker push ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.SERVICE_NAME }}:${{ github.sha }}
+
+      - name: Set target AKS cluster
+        uses: azure/aks-set-context@v1
+        with:
+          creds: '${{ secrets.AZURE_CREDENTIALS }}'
+          cluster-name: ${{ secrets.CLUSTER_NAME }}
+          resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
+
+      - run: |
+        kubectl create namespace ${{ env.NAMESPACE }} --dry-run -o json | kubectl apply -f -
+
+      - uses: azure/k8s-create-secret@v1
+        with:
+          container-registry-url: ${{ env.REGISTRY_NAME }}.azurecr.io
+          container-registry-username: ${{ secrets.REGISTRY_USERNAME }}
+          container-registry-password: ${{ secrets.REGISTRY_PASSWORD }}
+          secret-name: ${{ env.REGISTRY_NAME }}-registry-connection
+          namespace: ${{ env.NAMESPACE }}
+
+      - uses: azure/k8s-deploy@v1
+        with:
+          manifests: |
+            k8s-manifests/deployment.yml
+            k8s-manifests/service.yml
+          images: |
+            ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.SERVICE_NAME }}:${{ github.sha }}
+          imagepullsecrets: |
+            ${{ env.REGISTRY_NAME }}-registry-connection
+          namespace: ${{ env.NAMESPACE }}
