@@ -17,9 +17,10 @@ services:
     environment:
       NODE_ENV: development
       POSTGRES_PASSWORD: dummypass
-      POSTRES_DB: dev-db
+      POSTGRES_DB: dev-db
       POSTGRES_USER: jelkand
       POSTGRES_HOST: host.docker.internal
+      POSTGRES_PORT: 5432
 
   ci:
     build:
@@ -28,17 +29,13 @@ services:
       target: ci
     ports:
       - '3000:3000'
-    networks:
-      - service_net
-    volumes:
-      - ./:/usr/src/app
-      - ./node_modules:/usr/src/app/node_modules
-      - /usr/src/app/dist
     environment:
-      NODE_ENV: production
-      POSTGRES_PASSWORD: fnord
-      POSTRES_DB: fnord
-      POSTGRES_USER: fnord
+      - NODE_ENV=production
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+      - POSTGRES_USER
+      - POSTGRES_HOST
+      - POSTGRES_PORT
 
   db:
     image: postgres:11.5-alpine
@@ -46,10 +43,7 @@ services:
       - '5432:5432'
     environment:
       POSTGRES_PASSWORD: dummypass
-      POSTRES_DB: dev-db
+      POSTGRES_DB: dev-db
       POSTGRES_USER: jelkand
     volumes:
       - /var/lib/postgresql/data
-
-networks:
-  service_net:

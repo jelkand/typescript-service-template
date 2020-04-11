@@ -2,11 +2,15 @@ import {
   ApolloServerPlugin,
   GraphQLRequestContext,
   GraphQLRequestListener,
+  GraphQLServiceContext,
   ValueOrPromise,
 } from 'apollo-server-plugin-base'
 import { Maybe } from '../../typings/utility'
 
 export const LoggingPlugin: ApolloServerPlugin = {
+  serverWillStart({ logger }: GraphQLServiceContext): ValueOrPromise<void> {
+    logger.info({ message: 'Service starting...' })
+  },
   requestDidStart<Context>({
     logger,
   }: GraphQLRequestContext<Context>): GraphQLRequestListener<Context> {
