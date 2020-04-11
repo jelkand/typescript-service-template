@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: Build
         env:
@@ -24,7 +24,9 @@ jobs:
           docker-compose build
 
       - name: Execute Tests
-        run: docker-compose run --rm dev npm test
+        run: |
+          docker-compose run --rm dev npm i
+          docker-compose run --rm dev npm test
 
       - name: 'Login via Azure CLI'
         uses: azure/login@v1
