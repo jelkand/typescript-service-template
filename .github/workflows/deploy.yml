@@ -14,9 +14,14 @@ jobs:
         uses: actions/checkout@v1
 
       - name: Build
+        env:
+          POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+          POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
         run: |
-          docker-compose build dev
-          docker-compose run --rm dev npm i
+          docker-compose build
 
       - name: Execute Tests
         run: docker-compose run --rm dev npm test
@@ -32,15 +37,10 @@ jobs:
           login-server: jelkand.azurecr.io
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
-      # - name: Build and Push
-      #   env:
-      #     POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
-      #     POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
-      #     POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-      #   run: |
-      #     docker-compose build ci
-      #     docker tag ilm-post-service ilmservice.azurecr.io/ilm-post-service:${{ github.sha }}
-      #     docker push ilmservice.azurecr.io/ilm-post-service:${{ github.sha }}
+      - name: Build and Push
+        run: |
+          docker tag typescript-service-template_ci jelkand.azurecr.io/typescript-service-template:${{ github.sha }}
+          docker push jelkand.azurecr.io/typescript-service-template:${{ github.sha }}
       # # Set the target AKS cluster.
       # - name: Set target AKS cluster
       #   uses: azure/k8s-actions/aks-set-context@master
@@ -51,7 +51,7 @@ jobs:
       # TODO: Move Env Vars to Secrets
       # - uses: azure/k8s-actions/k8s-create-secret@master
       #   with:
-      #     container-registry-url: ilmservice.azurecr.io
+      #     container-registry-url: jelkand.azurecr.io
       #     container-registry-username: ${{ secrets.REGISTRY_USERNAME }}
       #     container-registry-password: ${{ secrets.REGISTRY_PASSWORD }}
       #     secret-name: demo-k8s-secret
@@ -62,6 +62,6 @@ jobs:
       #       manifests/deployment.yml
       #       manifests/service.yml
       #     images: |
-      #       ilmservice.azurecr.io/ilm-post-service:${{ github.sha }}
+      #       jelkand.azurecr.io/typescript-service-template:${{ github.sha }}
       # imagepullsecrets: |
       #   demo-k8s-secret
