@@ -10,16 +10,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Set service name
+        uses
+      
       - name: Checkout
         uses: actions/checkout@v1
+      
       - name: Build
         run: docker-compose build dev
+      
       - name: Execute Tests
+        run: docker-compose run --rm dev npm i
         run: docker-compose run --rm dev npm test
+
+      - name: 'Login via Azure CLI'
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
       # - name: Configure Container Registry
       #   uses: azure/k8s-actions/docker-login@master
       #   with:
-      #     login-server: ilmservice.azurecr.io
+      #     login-server: jelkand.azurecr.io
       #     username: ${{ secrets.REGISTRY_USERNAME }}
       #     password: ${{ secrets.REGISTRY_PASSWORD }}
       # - name: Build and Push
