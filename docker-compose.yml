@@ -6,6 +6,13 @@ services:
       context: .
       dockerfile: Dockerfile
       target: dev
+      args:
+        NODE_ENV: development
+        POSTGRES_PASSWORD: dummypass
+        POSTGRES_DB: dev-db
+        POSTGRES_USER: jelkand
+        POSTGRES_HOST: host.docker.internal
+        POSTGRES_PORT: 5432
     ports:
       - '3000:3000'
     volumes:
@@ -14,28 +21,25 @@ services:
       - /usr/src/app/dist
     depends_on:
       - db
-    environment:
-      NODE_ENV: development
-      POSTGRES_PASSWORD: dummypass
-      POSTGRES_DB: dev-db
-      POSTGRES_USER: jelkand
-      POSTGRES_HOST: host.docker.internal
-      POSTGRES_PORT: 5432
 
   ci:
     build:
       context: .
       dockerfile: Dockerfile
       target: ci
+      args:
+        - NODE_ENV=production
+        - POSTGRES_PASSWORD
+        - POSTGRES_DB
+        - POSTGRES_USER
+        - POSTGRES_HOST
+        - POSTGRES_PORT
     ports:
       - '3000:3000'
-    environment:
-      - NODE_ENV=production
-      - POSTGRES_PASSWORD
-      - POSTGRES_DB
-      - POSTGRES_USER
-      - POSTGRES_HOST
-      - POSTGRES_PORT
+    # volumes:
+    #   - ./:/usr/src/app
+    #   - ./node_modules:/usr/src/app/node_modules
+    #   - /usr/src/app/dist
 
   db:
     image: postgres:11.5-alpine
