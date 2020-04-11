@@ -1,4 +1,4 @@
-name: Deploy Post Service
+name: Deploy typescript-service-template
 
 on:
   push:
@@ -10,24 +10,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # - name: Set service name
-      #   uses
-      
       - name: Checkout
         uses: actions/checkout@v1
-      
+
       - name: Build
         run: docker-compose build dev
-      
+
       - name: Execute Tests
-        run: docker-compose run --rm dev npm i
-        run: docker-compose run --rm dev npm test
+        run: |
+          docker-compose run --rm dev npm i
+          docker-compose run --rm dev npm test
 
       - name: 'Login via Azure CLI'
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+      - name: Login to container registry
+        uses: azure/docker-login@v1
+        with:
+          login-server: contoso.azurecr.io
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
       # - name: Configure Container Registry
       #   uses: azure/k8s-actions/docker-login@master
       #   with:
