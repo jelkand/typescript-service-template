@@ -13,7 +13,7 @@
     "migrate": "typeorm migration:run",
     "start:ci": "node dist/server/server.js",
     "start:dev": "concurrently \"npm run build:watch\" \"nodemon dist/server/server.js\"",
-    "test": "npm run build && jest"
+    "test": "jest"
   },
   "repository": {
     "type": "git",

@@ -25,6 +25,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      target: ci
     ports:
       - '3000:3000'
     networks:

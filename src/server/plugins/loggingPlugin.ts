@@ -9,11 +9,9 @@ import { Maybe } from '../../typings/utility'
 export const LoggingPlugin: ApolloServerPlugin = {
   requestDidStart<Context>({
     logger,
-    request,
   }: GraphQLRequestContext<Context>): GraphQLRequestListener<Context> {
     logger.info({
       message: 'Request received',
-      query: request.query,
     })
     const start = Date.now()
     let operation: Maybe<string>
