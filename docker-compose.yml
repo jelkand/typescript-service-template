@@ -7,7 +7,6 @@ services:
       dockerfile: Dockerfile
       target: dev
       args:
-        NODE_ENV: development
         POSTGRES_PASSWORD: dummypass
         POSTGRES_DB: dev-db
         POSTGRES_USER: jelkand
@@ -28,7 +27,6 @@ services:
       dockerfile: Dockerfile
       target: ci
       args:
-        - NODE_ENV=production
         - POSTGRES_PASSWORD
         - POSTGRES_DB
         - POSTGRES_USER
