@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Set service name
-        uses
+      # - name: Set service name
+      #   uses
       
       - name: Checkout
         uses: actions/checkout@v1
@@ -27,6 +27,7 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+
       # - name: Configure Container Registry
       #   uses: azure/k8s-actions/docker-login@master
       #   with:
