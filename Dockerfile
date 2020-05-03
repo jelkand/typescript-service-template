@@ -22,8 +22,6 @@ ENV TYPEORM_ENTITIES_DIR=src/db/entity
 ENV TYPEORM_MIGRATIONS_DIR=src/db/migration
 ENV TYPEORM_SUBSCRIBERS_DIR=src/db/subscriber
 
-
-
 COPY package.json /usr/src/app/package.json
 WORKDIR /usr/src/app
 
@@ -62,8 +60,7 @@ ENV TYPEORM_MIGRATIONS=dist/db/migration/**/*.js
 ENV TYPEORM_ENTITIES_DIR=src/db/entity
 ENV TYPEORM_MIGRATIONS_DIR=src/db/migration
 ENV TYPEORM_SUBSCRIBERS_DIR=src/db/subscriber
-
-
+ENV TYPEORM_DRIVER_EXTRA='{ "ssl": true }'
 
 WORKDIR /usr/src/app
 
