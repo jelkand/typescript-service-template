@@ -1,10 +1,10 @@
 declare namespace NodeJS {
   interface ProcessEnv {
-    POSTGRES_DB: string
-    POSTGRES_USER: string
-    POSTGRES_PASSWORD: string
-    POSTGRES_HOST: string
-    POSTGRES_PORT: string
+    TYPEORM_DATABASE: string
+    TYPEORM_USERNAME: string
+    TYPEORM_PASSWORD: string
+    TYPEORM_HOST: string
+    TYPEORM_PORT: string
     NODE_ENV: 'development' | 'production'
   }
 }

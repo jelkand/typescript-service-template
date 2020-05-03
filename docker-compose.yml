@@ -7,11 +7,11 @@ services:
       dockerfile: Dockerfile
       target: dev
       args:
-        POSTGRES_PASSWORD: dummypass
-        POSTGRES_DB: dev-db
-        POSTGRES_USER: jelkand
-        POSTGRES_HOST: host.docker.internal
-        POSTGRES_PORT: 5432
+        TYPEORM_PASSWORD: dummypass
+        TYPEORM_DATABASE: dev-db
+        TYPEORM_USERNAME: jelkand
+        TYPEORM_HOST: host.docker.internal
+        TYPEORM_PORT: 5432
     ports:
       - '3000:3000'
     volumes:
@@ -27,11 +27,11 @@ services:
       dockerfile: Dockerfile
       target: ci
       args:
-        - POSTGRES_PASSWORD
-        - POSTGRES_DB
-        - POSTGRES_USER
-        - POSTGRES_HOST
-        - POSTGRES_PORT
+        - TYPEORM_PASSWORD
+        - TYPEORM_DATABASE
+        - TYPEORM_USERNAME
+        - TYPEORM_HOST
+        - TYPEORM_PORT
     ports:
       - '3000:3000'
 

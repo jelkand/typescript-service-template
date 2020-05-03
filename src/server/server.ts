@@ -10,11 +10,11 @@ import { LoggingPlugin } from './plugins/loggingPlugin'
 
 const connection: ConnectionOptions = {
   type: 'postgres',
-  host: process.env.POSTGRES_HOST,
-  port: parseInt(process.env.POSTGRES_PORT || '5432', 10),
-  username: process.env.POSTGRES_USER,
-  password: process.env.POSTGRES_PASSWORD,
-  database: process.env.POSTGRES_DB,
+  host: process.env.TYPEORM_HOST,
+  port: parseInt(process.env.TYPEORM_PORT || '5432', 10),
+  username: process.env.TYPEORM_USERNAME,
+  password: process.env.TYPEORM_PASSWORD,
+  database: process.env.TYPEORM_DATABASE,
   ssl: process.env.NODE_ENV === 'production',
   synchronize: false,
   logging: process.env.NODE_ENV !== 'production',
