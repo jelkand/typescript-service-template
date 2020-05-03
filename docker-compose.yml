@@ -34,10 +34,6 @@ services:
         - POSTGRES_PORT
     ports:
       - '3000:3000'
-    # volumes:
-    #   - ./:/usr/src/app
-    #   - ./node_modules:/usr/src/app/node_modules
-    #   - /usr/src/app/dist
 
   db:
     image: postgres:11.5-alpine

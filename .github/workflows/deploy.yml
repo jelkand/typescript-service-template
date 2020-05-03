@@ -35,6 +35,9 @@ jobs:
           docker-compose run --rm dev npm i
           docker-compose run --rm dev npm test
 
+      - name: Migrate production database
+        run: docker-compose run --rm ci npm run migrate
+
       - name: 'Login via Azure CLI'
         uses: azure/login@v1
         with:
@@ -71,7 +74,8 @@ jobs:
           secret-name: ${{ env.REGISTRY_NAME }}-registry-connection
           namespace: ${{ env.NAMESPACE }}
 
-      - uses: azure/k8s-deploy@v1
+      - name: Deploy to k8s
+        uses: azure/k8s-deploy@v1
         with:
           manifests: |
             k8s-manifests/deployment.yml
