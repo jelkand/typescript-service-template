@@ -10,7 +10,7 @@ env:
   REGISTRY_NAME: jelkand
   CLUSTER_NAME: jelkand
   CLUSTER_RESOURCE_GROUP: general
-  NAMESPACE: default
+  NAMESPACE: typescript-service-template
 
 jobs:
   build:
@@ -80,6 +80,7 @@ jobs:
           manifests: |
             k8s-manifests/deployment.yml
             k8s-manifests/service.yml
+            k8s-manifests/ingress.yml
           images: |
             ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.SERVICE_NAME }}:${{ github.sha }}
           imagepullsecrets: |
