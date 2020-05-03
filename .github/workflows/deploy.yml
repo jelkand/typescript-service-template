@@ -77,10 +77,7 @@ jobs:
       - name: Deploy to k8s
         uses: azure/k8s-deploy@v1
         with:
-          manifests: |
-            k8s-manifests/deployment.yml
-            k8s-manifests/service.yml
-            k8s-manifests/ingress.yml
+          manifests: kubernetes/definition.yml
           images: |
             ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.SERVICE_NAME }}:${{ github.sha }}
           imagepullsecrets: |

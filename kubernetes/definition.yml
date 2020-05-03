@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: typescript-service-template
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: typescript-service-template
+  template:
+    metadata:
+      labels:
+        app: typescript-service-template
+    spec:
+      containers:
+        - name: app
+          image: jelkand.azurecr.io/typescript-service-template:0678ea23bc3ecce0acbde39389ee4e16dcc48e51
+          ports:
+            - containerPort: 3000
+          imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: typescript-service-template
+spec:
+  selector:
+    app: typescript-service-template
+  ports:
+    - port: 80
+      targetPort: 3000
+  type: LoadBalancer
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: typescript-service-template-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: 'false'
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  rules:
+    - http:
+        paths:
+          - backend:
+              serviceName: typescript-service-template
+              servicePort: 80
+            path: /(.*)
