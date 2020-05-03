@@ -17,5 +17,4 @@ spec:
           image: jelkand.azurecr.io/typescript-service-template:0678ea23bc3ecce0acbde39389ee4e16dcc48e51
           ports:
             - containerPort: 3000
-          # env:
           imagePullPolicy: Always
