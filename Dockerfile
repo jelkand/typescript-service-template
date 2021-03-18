@@ -1,4 +1,4 @@
-FROM node:12.8.0-alpine as dev
+FROM node:15.10.0-alpine as dev
 
 ARG TYPEORM_PASSWORD
 ARG TYPEORM_DATABASE
@@ -24,20 +24,20 @@ ENV TYPEORM_SUBSCRIBERS_DIR=src/db/subscriber
 
 COPY package.json /usr/src/app/package.json
 WORKDIR /usr/src/app
-
-RUN npm i
+RUN npm install --global yarn
+RUN yarn
 
 COPY . .
 
 RUN chmod +x wait-for-it.sh
-RUN npm run build
+RUN yarn build
 
 EXPOSE 3000
 
 ENTRYPOINT [ "docker-entrypoint.sh" ]
-CMD npm run start:dev
+CMD yarn start:dev
 
-FROM node:12.8.0-alpine as ci
+FROM node:15.10.0-alpine as ci
 
 ARG TYPEORM_PASSWORD
 ARG TYPEORM_DATABASE
@@ -67,7 +67,7 @@ WORKDIR /usr/src/app
 COPY --from=dev /usr/src/app/dist ./dist
 COPY --from=dev /usr/src/app/package.json .
 
-RUN npm i --only=prod
+RUN yarn --only=prod
 
 ENTRYPOINT [ "docker-entrypoint.sh" ]
-CMD npm run start:ci
+CMD yarn start:ci

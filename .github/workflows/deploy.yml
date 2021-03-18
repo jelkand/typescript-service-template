@@ -32,11 +32,11 @@ jobs:
 
       - name: Execute Unit Tests
         run: |
-          docker-compose run --rm dev npm i
-          docker-compose run --rm dev npm test
+          docker-compose run --rm dev yarn
+          docker-compose run --rm dev yarn test
 
       - name: Migrate production database
-        run: docker-compose run --rm ci npm run migrate
+        run: docker-compose run --rm ci yarn migrate
 
       - name: 'Login via Azure CLI'
         uses: azure/login@v1

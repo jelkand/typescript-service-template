@@ -4,7 +4,7 @@
   "description": "An opinionated template for spinning up typescript services.",
   "scripts": {
     "type-check": "tsc --noEmit",
-    "type-check:watch": "npm run type-check -- --watch",
+    "type-check:watch": "yarn type-check -- --watch",
     "build": "tsc",
     "build:watch": "tsc -w",
     "generate": "graphql-codegen",
@@ -12,7 +12,7 @@
     "lint:fix": "eslint --fix .",
     "migrate": "typeorm migration:run",
     "start:ci": "node dist/server/server.js",
-    "start:dev": "concurrently \"npm run build:watch\" \"nodemon dist/server/server.js\"",
+    "start:dev": "concurrently \"yarn build:watch\" \"nodemon dist/server/server.js\"",
     "test": "jest"
   },
   "repository": {

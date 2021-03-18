@@ -10,7 +10,7 @@ It's often useful to have a consolidated template for spinning up services, in o
 
 Running locally, quickly:
 
-- `docker-compose run --dev npm run migrate` to get the database ready.
+- `docker-compose run --dev yarn migrate` to get the database ready.
 - `docker-compose up dev` to run the service at `localhost:3000`
 - `docker-compose down` to clean up when you're done.
 
