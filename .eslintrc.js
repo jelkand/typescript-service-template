@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const fs = require('fs')
 const path = require('path')
 
@@ -22,8 +23,8 @@ module.exports = {
     'prettier/prettier': ['error', prettierOptions],
     'arrow-body-style': [2, 'as-needed'],
     'class-methods-use-this': 0,
-    indent: 'off',
     'import/imports-first': 0,
+    'import/extensions': 0,
     'import/newline-after-import': 0,
     'import/no-dynamic-require': 0,
     'import/no-extraneous-dependencies': 0,

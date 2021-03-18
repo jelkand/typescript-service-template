@@ -24,7 +24,6 @@ ENV TYPEORM_SUBSCRIBERS_DIR=src/db/subscriber
 
 COPY package.json /usr/src/app/package.json
 WORKDIR /usr/src/app
-RUN npm install --global yarn
 RUN yarn
 
 COPY . .
