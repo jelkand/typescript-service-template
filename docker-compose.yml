@@ -7,11 +7,7 @@ services:
       dockerfile: Dockerfile
       target: dev
       args:
-        TYPEORM_PASSWORD: dummypass
-        TYPEORM_DATABASE: dev-db
-        TYPEORM_USERNAME: jelkand
-        TYPEORM_HOST: host.docker.internal
-        TYPEORM_PORT: 5432
+        DATABASE_URL: postgresql://jelkand:dummypass@host.docker.internal:5432/dev-db?schema=public
     ports:
       - '3000:3000'
     volumes:
@@ -27,16 +23,12 @@ services:
       dockerfile: Dockerfile
       target: ci
       args:
-        - TYPEORM_PASSWORD
-        - TYPEORM_DATABASE
-        - TYPEORM_USERNAME
-        - TYPEORM_HOST
-        - TYPEORM_PORT
+        - DATABASE_URL
     ports:
       - '3000:3000'
 
   db:
-    image: postgres:11.5-alpine
+    image: postgres
     ports:
       - '5432:5432'
     environment:

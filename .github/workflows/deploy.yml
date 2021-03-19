@@ -22,11 +22,7 @@ jobs:
 
       - name: Build
         env:
-          TYPEORM_HOST: ${{ secrets.POSTGRES_HOST }}
-          TYPEORM_USERNAME: ${{ secrets.POSTGRES_USER }}
-          TYPEORM_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-          TYPEORM_DATABASE: ${{ secrets.POSTGRES_DB }}
-          TYPEORM_PORT: ${{ secrets.POSTGRES_PORT }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: |
           docker-compose build
 

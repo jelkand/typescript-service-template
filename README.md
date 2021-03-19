@@ -43,7 +43,7 @@ This repository contains:
 - Typescript
 - Apollo Server 2.0
 - Dockerized local development through docker-compose, including a database.
-- TypeORM, and configuration + connections, assuming postgres.
+- Prisma, and configuration + connections, assuming postgres.
 - Tests, through Jest.
 - A CI/CD pipeline through Github Actions.
 - Deployment to a kubernetes cluster on Azure, including an ingress service.

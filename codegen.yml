@@ -8,6 +8,3 @@ generates:
       - typescript-resolvers
     config:
       useIndexSignature: true
-      mappers:
-        Sample: ../db/entity/SampleModel#SampleModel
-      contextType: ../typings/context#Context

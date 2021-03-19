@@ -10,7 +10,7 @@
     "generate": "graphql-codegen",
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint --fix .",
-    "migrate": "typeorm migration:run",
+    "migrate:dev": "prisma migrate dev",
     "start:ci": "node dist/server/server.js",
     "start:dev": "concurrently \"yarn build:watch\" \"nodemon dist/server/server.js\"",
     "test": "jest"
@@ -42,10 +42,12 @@
     "jest": "^26.6.3",
     "nodemon": "^2.0.7",
     "prettier": "^2.2.1",
+    "prisma": "^2.19.0",
     "ts-jest": "^26.5.4",
     "typescript": "^4.2.3"
   },
   "dependencies": {
+    "@prisma/client": "^2.19.0",
     "@types/bluebird": "^3.5.33",
     "@types/bunyan": "^1.8.6",
     "@types/node": "^14.14.35",
@@ -57,7 +59,6 @@
     "graphql": "^15.5.0",
     "pg": "^8.5.1",
     "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.2.31",
     "uuid": "^8.3.2"
   }
 }
