@@ -41,6 +41,7 @@
     "eslint-plugin-prettier": "^3.3.1",
     "jest": "^26.6.3",
     "nodemon": "^2.0.7",
+    "pino-pretty": "^4.7.1",
     "prettier": "^2.2.1",
     "prisma": "^2.19.0",
     "ts-jest": "^26.5.4",
@@ -49,15 +50,15 @@
   "dependencies": {
     "@prisma/client": "^2.19.0",
     "@types/bluebird": "^3.5.33",
-    "@types/bunyan": "^1.8.6",
     "@types/node": "^14.14.35",
+    "@types/pino": "^6.3.6",
     "@types/validator": "^10.11.2",
     "apollo-server": "^2.21.1",
     "apollo-server-plugin-base": "^0.10.4",
     "apollo-server-types": "^0.6.3",
-    "bunyan": "^1.8.15",
     "graphql": "^15.5.0",
     "pg": "^8.5.1",
+    "pino": "^6.11.2",
     "reflect-metadata": "^0.1.13",
     "uuid": "^8.3.2"
   }

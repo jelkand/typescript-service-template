@@ -17,7 +17,6 @@ RUN yarn build
 EXPOSE 3000
 
 ENTRYPOINT [ "docker-entrypoint.sh" ]
-# RUN yarn migrate:dev
 CMD yarn start:dev
 
 FROM node:15.10.0 as ci
