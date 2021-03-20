@@ -6,8 +6,8 @@ services:
       context: .
       dockerfile: Dockerfile
       target: dev
-      args:
-        DATABASE_URL: postgresql://jelkand:dummypass@host.docker.internal:5432/dev-db?schema=public
+    environment:
+      DATABASE_URL: postgresql://jelkand:dummypass@host.docker.internal:5432/dev-db?schema=public
     ports:
       - '3000:3000'
     volumes:
@@ -22,8 +22,8 @@ services:
       context: .
       dockerfile: Dockerfile
       target: ci
-      args:
-        - DATABASE_URL
+    environment:
+      - DATABASE_URL
     ports:
       - '3000:3000'
 

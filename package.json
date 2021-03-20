@@ -10,6 +10,7 @@
     "generate": "graphql-codegen",
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint --fix .",
+    "migrate:ci": "prisma migrate deploy",
     "migrate:dev": "prisma migrate dev",
     "start:ci": "node dist/server/server.js",
     "start:dev": "concurrently \"yarn build:watch\" \"nodemon dist/server/server.js\"",

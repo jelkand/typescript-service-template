@@ -1,7 +1,5 @@
 FROM node:15.10.0 as dev
 
-ARG DATABASE_URL
-
 ENV NODE_ENV=development
 ENV DATABASE_URL=$DATABASE_URL
 
@@ -12,7 +10,6 @@ RUN yarn
 COPY . .
 
 RUN chmod +x wait-for-it.sh
-RUN yarn build
 
 EXPOSE 3000
 
@@ -20,8 +17,6 @@ ENTRYPOINT [ "docker-entrypoint.sh" ]
 CMD yarn start:dev
 
 FROM node:15.10.0 as ci
-
-ARG DATABASE_URL
 
 ENV NODE_ENV=production
 ENV DATABASE_URL=$DATABASE_URL
@@ -33,5 +28,4 @@ COPY --from=dev /usr/src/app/package.json .
 
 RUN yarn --only=prod
 
-ENTRYPOINT [ "docker-entrypoint.sh" ]
 CMD yarn start:ci
