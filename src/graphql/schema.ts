@@ -40,8 +40,8 @@ const Mutation = objectType({
       },
       resolve: (
         _,
-        { attribute }: { attribute?: string },
-        { prisma }: Context,
+        { attribute },
+        { prisma },
       ) =>
         prisma.sampleModel.create({
           data: { attribute },
@@ -55,8 +55,8 @@ const Mutation = objectType({
       },
       resolve: (
         _,
-        { id, attribute }: { id: string; attribute?: string },
-        { prisma }: Context,
+        { id, attribute },
+        { prisma },
       ) => prisma.sampleModel.update({ where: { id }, data: { attribute } }),
     })
     t.field('deleteSample', {
@@ -88,7 +88,7 @@ export const schema = makeSchema({
   types: [Query, Mutation, Sample, DateTime],
   outputs: {
     schema: `${__dirname}/../schema.graphql`,
-    typegen: `${__dirname}/../generated/nexus.ts`,
+    typegen: `${__dirname}/../nexus-typegen.ts`,
   },
   contextType: {
     module: require.resolve('../server/context'),

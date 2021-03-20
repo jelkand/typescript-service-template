@@ -6,14 +6,13 @@
     "type-check": "tsc --noEmit",
     "type-check:watch": "yarn type-check -- --watch",
     "build": "tsc",
-    "build:watch": "tsc -w",
     "generate": "graphql-codegen",
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint --fix .",
     "migrate:ci": "prisma migrate deploy",
     "migrate:dev": "prisma migrate dev",
     "start:ci": "node dist/server/server.js",
-    "start:dev": "concurrently \"yarn build:watch\" \"nodemon dist/server/server.js\"",
+    "start:dev": "ts-node-dev --transpile-only --no-notify src/server/server.ts",
     "test": "jest"
   },
   "repository": {
@@ -46,6 +45,7 @@
     "prettier": "^2.2.1",
     "prisma": "^2.19.0",
     "ts-jest": "^26.5.4",
+    "ts-node-dev": "^1.1.6",
     "typescript": "^4.2.3"
   },
   "dependencies": {
