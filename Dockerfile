@@ -9,6 +9,7 @@ RUN yarn
 
 COPY . .
 
+RUN yarn build
 RUN chmod +x wait-for-it.sh
 
 EXPOSE 3000
