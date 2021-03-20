@@ -1,7 +1,8 @@
 import pino from 'pino'
 import { ApolloServer } from 'apollo-server'
-import typeDefs from '../graphql/typeDefs'
-import resolvers from '../graphql/resolvers'
+// import typeDefs from '../graphql/typeDefs'
+// import resolvers from '../graphql/resolvers'
+import { schema } from '../graphql/schema'
 
 import { LoggingPlugin } from './plugins/loggingPlugin'
 import { context } from './context'
@@ -15,8 +16,7 @@ import { context } from './context'
   })
 
   const server = new ApolloServer({
-    typeDefs,
-    resolvers,
+    schema,
     logger,
     context,
     plugins: [LoggingPlugin],
