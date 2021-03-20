@@ -24,6 +24,7 @@ ENV DATABASE_URL=$DATABASE_URL
 
 WORKDIR /usr/src/app
 
+COPY --from=dev /usr/src/app/prisma ./prisma
 COPY --from=dev /usr/src/app/dist ./dist
 COPY --from=dev /usr/src/app/package.json .
 
