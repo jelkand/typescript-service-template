@@ -36,7 +36,7 @@ jobs:
         run: heroku container:push -a typescript-service-template web 
 
       - name: Migrate production database
-        run: docker-compose run --rm ci yarn migrate:ci -e ${{ secrets.DATABASE_URL }}
+        run: docker-compose run --rm -e DATABASE_URL=${{ secrets.DATABASE_URL }} ci yarn migrate:ci 
 
       - name: Release
         env:
