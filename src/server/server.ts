@@ -22,7 +22,7 @@ import { context } from './context'
     plugins: [LoggingPlugin],
   })
 
-  const port = process.env.port ?? 3000
+  const port = process.env.PORT ?? 3000
 
   await server.listen(port)
   logger.info({

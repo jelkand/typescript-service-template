@@ -8,6 +8,7 @@ services:
       target: dev
     environment:
       DATABASE_URL: postgresql://jelkand:dummypass@host.docker.internal:5432/dev-db?schema=public
+      PORT: 3000
     ports:
       - '3000:3000'
     volumes:
@@ -24,6 +25,7 @@ services:
       target: ci
     environment:
       - DATABASE_URL
+      - PORT
     ports:
       - '3000:3000'
 

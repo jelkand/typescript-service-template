@@ -58,7 +58,6 @@
     "apollo-server-plugin-base": "^0.10.4",
     "apollo-server-types": "^0.6.3",
     "graphql": "^15.5.0",
-    "pg": "^8.5.1",
     "pino": "^6.11.2",
     "reflect-metadata": "^0.1.13",
     "uuid": "^8.3.2"
